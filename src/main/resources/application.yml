@@ -1,4 +1,6 @@
 logging:
+  file:
+    name: logs/testlog.log
   level:
     root: ERROR
     ru.otus.glebanov.javaqa: DEBUG

@@ -26,6 +26,9 @@ dependencies {
 	implementation("org.seleniumhq.selenium:selenium-java:3.141.59")
 	// https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
 	implementation("io.github.bonigarcia:webdrivermanager:4.4.0")
+	// https://mvnrepository.com/artifact/org.assertj/assertj-core
+	implementation("org.assertj:assertj-core:3.19.0")
+
 }
 
 tasks.withType<KotlinCompile> {

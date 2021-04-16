@@ -1,5 +1,6 @@
 package ru.otus.glebanov.javaqa
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
 import org.openqa.selenium.WebDriver
 import org.slf4j.Logger
@@ -36,6 +37,7 @@ class JavaQaApplicationTests(
     fun contextLoads() {
         logger.info("Тест начат")
         driver.get(frameworkProperties.url)
+        assertThat(driver.title).contains("Онлайн‑курсы")
         logger.info("Открыт url: ${frameworkProperties.url}")
     }
 
