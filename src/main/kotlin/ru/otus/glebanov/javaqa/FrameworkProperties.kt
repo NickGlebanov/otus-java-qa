@@ -8,4 +8,5 @@ import org.springframework.context.annotation.Configuration
 class FrameworkProperties {
 
     lateinit var browser: String
+    var waitForElementInSeconds: Long = 0
 }

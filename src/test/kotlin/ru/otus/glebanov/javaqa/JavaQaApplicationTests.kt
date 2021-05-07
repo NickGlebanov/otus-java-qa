@@ -29,6 +29,7 @@ class JavaQaApplicationTests(
     fun setUp() {
         logger.info("Настройка окружения")
         driverSettings = driverFactory.getDriverSettings()
+        driverSettings.configureImplicitWaits()
         driver = driverSettings.getDriver()
     }
 
@@ -38,6 +39,13 @@ class JavaQaApplicationTests(
         val otusMainPage = pageFactory.getMainPage(driver)
         otusMainPage.get()
         assertThat(driver.title).contains("Онлайн‑курсы")
+    }
+
+    @Test
+    fun checkAddress() {
+        val otusMainPage = pageFactory.getMainPage(driver)
+        driverSettings.maximizeWindow()
+        otusMainPage.get()
     }
 
     @AfterEach
