@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-@EnableConfigurationProperties(FrameworkProperties::class)
+//@EnableConfigurationProperties(FrameworkProperties::class)
 class JavaQaApplication
 
 fun main(args: Array<String>) {

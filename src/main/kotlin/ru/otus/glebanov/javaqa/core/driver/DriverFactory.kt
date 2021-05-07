@@ -1,4 +1,4 @@
-package ru.otus.glebanov.javaqa.core
+package ru.otus.glebanov.javaqa.core.driver
 
 import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.WebDriver
@@ -17,7 +17,7 @@ class DriverFactory(
 
     val logger = LoggerFactory.getLogger(DriverFactory::class.java)
 
-    fun getDriver(): WebDriver {
+    fun getDriverSettings(): DriverSettings {
         var driver: WebDriver? = null
         when (frameworkProperties.browser) {
             "CHROME" -> {
@@ -34,6 +34,6 @@ class DriverFactory(
             }
         }
         logger.info("Драйвер для браузера ${frameworkProperties.browser} установлен")
-        return driver!!
+        return DriverSettings(driver!!, frameworkProperties)
     }
 }

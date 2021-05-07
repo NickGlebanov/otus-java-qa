@@ -1,11 +1,11 @@
-package ru.otus.glebanov.javaqa
+package ru.otus.glebanov.javaqa.otus_web.pages
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Configuration
 
 @Configuration
 @ConfigurationProperties
-class FrameworkProperties {
+class OtusProperties {
 
-    lateinit var browser: String
+    lateinit var mainPageUrl: String
 }

@@ -3,42 +3,41 @@ package ru.otus.glebanov.javaqa
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
 import org.openqa.selenium.WebDriver
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.context.annotation.Import
 import org.springframework.test.context.TestPropertySource
-import org.springframework.test.context.event.annotation.AfterTestClass
-import org.springframework.test.context.event.annotation.AfterTestMethod
-import org.springframework.test.context.event.annotation.BeforeTestClass
-import org.springframework.test.context.event.annotation.BeforeTestMethod
-import ru.otus.glebanov.javaqa.core.DriverFactory
+import ru.otus.glebanov.javaqa.core.driver.DriverFactory
+import ru.otus.glebanov.javaqa.core.driver.DriverSettings
+import ru.otus.glebanov.javaqa.otus_web.pages.OtusMainPage
+import ru.otus.glebanov.javaqa.otus_web.pages.PageFactory
 
 @SpringBootTest
 @EnableConfigurationProperties(value = [FrameworkProperties::class])
-@TestPropertySource("classpath:framework.yml")
+@TestPropertySource(locations = ["classpath:framework.yml", "classpath:otus.yml"] )
 class JavaQaApplicationTests(
         @Autowired val driverFactory: DriverFactory,
-        @Autowired val frameworkProperties: FrameworkProperties
+        @Autowired val pageFactory: PageFactory
 ) {
 
     lateinit var driver: WebDriver
+    lateinit var driverSettings: DriverSettings
     private val logger = LoggerFactory.getLogger(JavaQaApplicationTests::class.java)
 
     @BeforeEach
     fun setUp() {
         logger.info("Настройка окружения")
-        driver = driverFactory.getDriver()
+        driverSettings = driverFactory.getDriverSettings()
+        driver = driverSettings.getDriver()
     }
 
     @Test
     fun contextLoads() {
         logger.info("Тест начат")
-        driver.get(frameworkProperties.url)
+        val otusMainPage = pageFactory.getMainPage(driver)
+        otusMainPage.get()
         assertThat(driver.title).contains("Онлайн‑курсы")
-        logger.info("Открыт url: ${frameworkProperties.url}")
     }
 
     @AfterEach
