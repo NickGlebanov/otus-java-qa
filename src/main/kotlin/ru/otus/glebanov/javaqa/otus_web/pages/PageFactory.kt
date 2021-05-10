@@ -12,4 +12,6 @@ class PageFactory(
 
     fun getMainPage(driver: WebDriver): OtusMainPage = OtusMainPage(driver, otusProperties)
 
+    fun getContactsPage(driver: WebDriver): OtusContactsPage = OtusContactsPage(driver, otusProperties)
+
 }
