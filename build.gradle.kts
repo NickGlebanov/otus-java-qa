@@ -28,6 +28,8 @@ dependencies {
 	implementation("io.github.bonigarcia:webdrivermanager:4.4.0")
 	// https://mvnrepository.com/artifact/org.assertj/assertj-core
 	implementation("org.assertj:assertj-core:3.19.0")
+	// https://github.com/DiUS/java-faker
+	implementation("com.github.javafaker:javafaker:1.0.2")
 
 }
 
