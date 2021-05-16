@@ -57,6 +57,7 @@ class OtusTests(
 
     @Test
     fun courseProgramTest() {
+        driverSettings.setWindowSize(1050, 660)
         val otusMainPage = otusPageFactory.getMainPage(driver)
         otusMainPage.get()
         otusMainPage.goToFAQ()

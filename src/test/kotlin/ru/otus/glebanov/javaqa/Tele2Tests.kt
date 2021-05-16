@@ -29,14 +29,17 @@ class Tele2Tests(
 
     @BeforeEach
     fun setUp() {
-        logger.info("Настройка окружения")
+        logger.info("Настройка окружения для Tele2")
         driverSettings = driverFactory.getDriverSettings()
         driverSettings.configureImplicitWaits()
+        driverSettings.setWindowSize(1050, 660)
         driver = driverSettings.getDriver()
+
     }
 
     @Test
     fun waitForNumbersTest() {
+        println("h:${driver.manage().window().size.getHeight()} w:${driver.manage().window().size.getWidth()}")
         val numberShopPage = tele2PageFactory.getNumberShopPage(driver)
         numberShopPage.open()
         numberShopPage.elementSearchNumberInput().sendKeys("97")
@@ -55,10 +58,10 @@ class Tele2Tests(
         }
         assertThat(
                 driver.findElements(By.xpath("//span[@class='phone-number']"))
-                .stream().map { it.text }.filter {
-                    it.contains("97") || it.contains("9-7")
-                }
-                .count()
+                        .stream().map { it.text }.filter {
+                            it.contains("97") || it.contains("9-7")
+                        }
+                        .count()
         ).isEqualTo(24)
     }
 

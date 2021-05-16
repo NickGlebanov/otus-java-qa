@@ -1,5 +1,6 @@
 package ru.otus.glebanov.javaqa.core.driver
 
+import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
 import org.slf4j.LoggerFactory
 import ru.otus.glebanov.javaqa.FrameworkProperties
@@ -16,6 +17,11 @@ class DriverSettings(
     fun configureImplicitWaits() {
         driver.manage().timeouts().implicitlyWait(frameworkProperties.waitForElementInSeconds, TimeUnit.SECONDS)
         logger.info("Настроено неявное ожидание в ${frameworkProperties.waitForElementInSeconds} секунд")
+    }
+
+    fun setWindowSize(width: Int, height: Int) {
+        driver.manage().window().size = Dimension(width, height)
+        logger.info("Размер браузера установлен - ширина: $width, высота: $height")
     }
 
     fun getDriver(): WebDriver = driver
