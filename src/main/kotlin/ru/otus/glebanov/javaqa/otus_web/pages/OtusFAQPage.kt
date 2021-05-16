@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.slf4j.LoggerFactory
 import ru.otus.glebanov.javaqa.otus_web.properties.OtusProperties
-import ru.otus.glebanov.javaqa.tele2_web.properties.Tele2Properties
 
 class OtusFAQPage(
         private val driver: WebDriver,
