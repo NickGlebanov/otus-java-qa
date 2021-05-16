@@ -11,7 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.TestPropertySource
 import ru.otus.glebanov.javaqa.core.driver.DriverFactory
 import ru.otus.glebanov.javaqa.core.driver.DriverSettings
+import ru.otus.glebanov.javaqa.core.helpers.JSHelper
 import ru.otus.glebanov.javaqa.otus_web.page_factory.OtusPageFactory
+import java.lang.Thread.sleep
 
 @SpringBootTest
 @TestPropertySource(locations = ["classpath:framework.yml", "classpath:otus.yml"])
@@ -63,6 +65,7 @@ class OtusTests(
         otusMainPage.goToFAQ()
         val otusFAQPage = otusPageFactory.getFAQPage(driver)
         otusFAQPage.questionWhereCourseProgramElement().click()
+        JSHelper(driver).scrollIntoView(otusFAQPage.answerWhereCourseProgramElement())
         assertThat(otusFAQPage.answerWhereCourseProgramElement().text)
                 .isEqualTo(whereCourseProgrammAnswerText)
     }
