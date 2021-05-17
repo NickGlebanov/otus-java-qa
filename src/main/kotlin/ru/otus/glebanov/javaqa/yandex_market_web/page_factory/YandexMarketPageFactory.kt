@@ -8,9 +8,9 @@ import ru.otus.glebanov.javaqa.yandex_market_web.properties.YandexMarketProperti
 
 @Component
 class YandexMarketPageFactory(
-        @Autowired private val tele2Properties: YandexMarketProperties
+        @Autowired private val yandexMarketProperties: YandexMarketProperties
 ) {
 
-    fun getMainPage(driver: WebDriver): MainMarketPage = MainMarketPage(driver, tele2Properties)
+    fun getMainPage(driver: WebDriver): MainMarketPage = MainMarketPage(driver, yandexMarketProperties)
 
 }
