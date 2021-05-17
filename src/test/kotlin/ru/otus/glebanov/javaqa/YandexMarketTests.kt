@@ -4,7 +4,6 @@ import org.awaitility.Awaitility.await
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
@@ -56,7 +55,6 @@ class YandexMarketTests(
         }
         val item1 = mainMarketPage.addToCompare("Samsung", 0)
         val item2 = mainMarketPage.addToCompare("Xiaomi", 0)
-        (driver as JavascriptExecutor).executeScript("return document.readyState") == "complete"
         mainMarketPage.toCompare()
         mainMarketPage.checkItemsInComparingList(mutableListOf(item1, item2))
     }

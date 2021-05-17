@@ -8,4 +8,6 @@ import org.springframework.context.annotation.Configuration
 class YandexMarketProperties {
 
     lateinit var mainPageUrl: String
+
+    lateinit var compareUrl: String
 }

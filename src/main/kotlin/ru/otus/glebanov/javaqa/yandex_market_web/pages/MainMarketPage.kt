@@ -84,7 +84,7 @@ class MainMarketPage(
                 .contains(numberOfItem.toString())
     }
 
-    fun toCompare() = driver.findElement(By.xpath("//span[text()='Сравнить']")).click()
+    fun toCompare() = driver.get(yandexMarketProperties.compareUrl)
 
     fun checkItemsInComparingList(items: MutableCollection<String>) {
         items.forEach {
