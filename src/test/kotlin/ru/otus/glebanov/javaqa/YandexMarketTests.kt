@@ -4,7 +4,6 @@ import org.awaitility.Awaitility.await
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.interactions.Actions
 import org.slf4j.LoggerFactory
@@ -50,9 +49,7 @@ class YandexMarketTests(
         mainMarketPage.addManufacturerFilter("Samsung")
         mainMarketPage.addManufacturerFilter("Xiaomi")
         mainMarketPage.sortButtonByType("по цене").click()
-        await().atMost(10L, TimeUnit.SECONDS).until {
-            mainMarketPage.getFirstItemName() == "Смартфон Samsung Galaxy Star GT-S5282"
-        }
+        Thread.sleep(3000)
         val item1 = mainMarketPage.addToCompare("Samsung", 0)
         val item2 = mainMarketPage.addToCompare("Xiaomi", 0)
         mainMarketPage.toCompare()
