@@ -79,6 +79,28 @@ class OtusTests(
         assertThat(otusMainPage.elementSubscribeModalSuccess().text).isEqualTo("Вы успешно подписались")
     }
 
+    @Test
+    fun profileAddContactsTest() {
+        var otusMainPage = otusPageFactory.getMainPage(driver)
+        otusMainPage.get()
+        otusMainPage.goToLoginModal()
+        val otusLoginModalPage = otusPageFactory.getLoginModalPage(driver)
+        otusLoginModalPage.login()
+        otusMainPage.goToProfile()
+        val otusProfilePage = otusPageFactory.getProfilePage(driver)
+        otusProfilePage.deleteOldContacts()
+        otusProfilePage.addAddNewContactFieldWithValue("one")
+        otusProfilePage.addAddNewContactFieldWithValue("two")
+        otusProfilePage.save()
+        driver.manage().deleteAllCookies()
+        otusMainPage.get()
+        otusMainPage.goToLoginModal()
+        otusLoginModalPage.login()
+        otusMainPage.goToProfile()
+        otusProfilePage.checkContactWithValue("one")
+        otusProfilePage.checkContactWithValue("two")
+    }
+
     @AfterEach
     fun setDown() {
         logger.info("Закрываем драйвер")

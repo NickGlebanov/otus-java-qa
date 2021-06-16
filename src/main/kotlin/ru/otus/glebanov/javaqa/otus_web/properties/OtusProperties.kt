@@ -8,4 +8,6 @@ import org.springframework.context.annotation.Configuration
 class OtusProperties {
 
     lateinit var mainPageUrl: String
+    lateinit var email: String
+    lateinit var password: String
 }

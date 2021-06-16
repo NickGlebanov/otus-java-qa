@@ -2,8 +2,10 @@ package ru.otus.glebanov.javaqa.otus_web.pages
 
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.interactions.Actions
 import org.slf4j.LoggerFactory
 import ru.otus.glebanov.javaqa.otus_web.properties.OtusProperties
+import java.time.Duration
 
 class OtusMainPage(
         private val driver: WebDriver,
@@ -13,6 +15,10 @@ class OtusMainPage(
 
     private val contactsHeaderLinkXpath = "//a[@class='header2_subheader-link' and @title='Контакты']"
     private val faqHeaderLinkXpath = "//a[@class='header2_subheader-link' and @title='FAQ']"
+    private val registrationAndLoginButtonXpath = "//button[@data-modal-id='new-log-reg']"
+
+    private val divUsernameWrapperXpath = "//div[contains(@class,'username')]"
+    private val profileLinkXpath = "//b[contains(@class,'dropdown-text_name')]"
 
 
     fun get() {
@@ -30,6 +36,10 @@ class OtusMainPage(
         logger.info("Перешли в FAQ")
     }
 
+    fun goToLoginModal() {
+        driver.findElement(By.xpath(registrationAndLoginButtonXpath)).click()
+    }
+
     fun subscribe(email: String) {
         driver.findElement(By.xpath("//input[@class='input footer2__subscribe-input']"))
                 .sendKeys(email)
@@ -42,4 +52,11 @@ class OtusMainPage(
             By.xpath("//p[@class='subscribe-modal__success']")
     )
 
+    fun goToProfile() {
+        Actions(driver).moveToElement(
+            driver.findElement(By.xpath(divUsernameWrapperXpath))
+        ).pause(Duration.ofMillis(500))
+            .click(driver.findElement(By.xpath(profileLinkXpath)))
+            .build().perform()
+    }
 }

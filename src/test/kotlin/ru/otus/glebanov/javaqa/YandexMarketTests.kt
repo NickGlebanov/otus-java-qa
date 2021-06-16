@@ -1,6 +1,5 @@
 package ru.otus.glebanov.javaqa
 
-import org.awaitility.Awaitility.await
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -12,9 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.TestPropertySource
 import ru.otus.glebanov.javaqa.core.driver.DriverFactory
 import ru.otus.glebanov.javaqa.core.driver.DriverSettings
-import ru.otus.glebanov.javaqa.core.helpers.JSHelper
 import ru.otus.glebanov.javaqa.yandex_market_web.page_factory.YandexMarketPageFactory
-import java.util.concurrent.TimeUnit
 
 
 @SpringBootTest

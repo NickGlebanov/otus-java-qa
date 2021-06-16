@@ -14,26 +14,27 @@ import ru.otus.glebanov.javaqa.FrameworkProperties
 class DriverFactory(
         @Autowired val frameworkProperties: FrameworkProperties
 ) {
-
+    enum class Browsers {
+        CHROME,FIREFOX,EDGE
+    }
     val logger = LoggerFactory.getLogger(DriverFactory::class.java)
 
     fun getDriverSettings(): DriverSettings {
-        var driver: WebDriver? = null
-        when (frameworkProperties.browser) {
-            "CHROME" -> {
+        val driver = when (Browsers.valueOf(frameworkProperties.browser)) {
+            Browsers.CHROME -> {
                 WebDriverManager.chromedriver().setup()
-                driver = ChromeDriver()
+                ChromeDriver()
             }
-            "FIREFOX" -> {
+            Browsers.FIREFOX -> {
                 WebDriverManager.firefoxdriver().setup()
-                driver = FirefoxDriver()
+                FirefoxDriver()
             }
-            "EDGE" -> {
+            Browsers.EDGE -> {
                 WebDriverManager.edgedriver().setup()
-                driver = EdgeDriver()
+                EdgeDriver()
             }
         }
-        logger.info("Драйвер для браузера ${frameworkProperties.browser} установлен")
+        logger.info(frameworkProperties.browser)
         return DriverSettings(driver!!, frameworkProperties)
     }
 }
